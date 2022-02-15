@@ -1,8 +1,15 @@
 const express = require("express")
+const mongoose = require('mongoose');
 
-const sessionController= require("./controller/session-controller")
+const sessionController = require("./controller/session-controller")
+const roleController = require("./controller/role-controller")
 
 const app = express()
+
+//middle ware
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 
 app.get("/",function(req,res){
     res.write("Welcome.......")
@@ -11,6 +18,23 @@ app.get("/",function(req,res){
 
 app.get("/login",sessionController.login)
 app.get("/signup",sessionController.signup)
+app.post("/saveuser",sessionController.saveuser)
+
+//role
+app.post("/roles",roleController.addRole)
+
+//database
+mongoose.connect('mongodb://localhost:27017/localservices',function(err){
+    if(err){
+        console.log("db connection fail....");
+        console.log(err);
+    }
+    else
+    {
+        console.log("db connected....");
+    }
+});
+app.post
 
 app.listen(3000,function(){
     console.log("server started on 3000")
