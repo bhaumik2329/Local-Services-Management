@@ -1,5 +1,4 @@
 const express = require("express")
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 
 const sessionController = require("./controller/session-controller")
@@ -12,13 +11,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
-=======
-
-const sessionController= require("./controller/session-controller")
-
-const app = express()
-
->>>>>>> 58d381678cef30852400229855829e1def613e83
 app.get("/",function(req,res){
     res.write("Welcome.......")
     res.end()
@@ -26,7 +18,6 @@ app.get("/",function(req,res){
 
 app.get("/login",sessionController.login)
 app.get("/signup",sessionController.signup)
-<<<<<<< HEAD
 app.post("/saveuser",sessionController.saveuser)
 
 //role
@@ -44,8 +35,6 @@ mongoose.connect('mongodb://localhost:27017/localservices',function(err){
     }
 });
 app.post
-=======
->>>>>>> 58d381678cef30852400229855829e1def613e83
 
 app.listen(3000,function(){
     console.log("server started on 3000")

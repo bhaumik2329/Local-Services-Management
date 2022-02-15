@@ -8,17 +8,12 @@ function signup(req,res)
     res.end()
 }
 
-<<<<<<< HEAD
 function login(req,res){
-=======
-function login (req,res){
->>>>>>> 58d381678cef30852400229855829e1def613e83
     let loginHtml = fs.readFileSync("./views/login.html")
     res.write(loginHtml)
     res.end()
 }
 
-<<<<<<< HEAD
 function saveUser(req,res){
     console.log(req.body)
 
@@ -33,7 +28,3 @@ function saveUser(req,res){
 module.exports.login=login
 module.exports.signup=signup
 module.exports.saveuser=saveUser
-=======
-module.exports.login=login
-module.exports.signup=signup
->>>>>>> 58d381678cef30852400229855829e1def613e83
