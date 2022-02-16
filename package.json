@@ -9,11 +9,7 @@
   "author": "Bhaumik Patel",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.17.2",
     "mongoose": "^6.2.1"
-=======
-    "express": "^4.17.2"
->>>>>>> 58d381678cef30852400229855829e1def613e83
   }
 }

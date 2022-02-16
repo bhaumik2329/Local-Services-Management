@@ -34,7 +34,6 @@ mongoose.connect('mongodb://localhost:27017/localservices',function(err){
         console.log("db connected....");
     }
 });
-app.post
 
 app.listen(3000,function(){
     console.log("server started on 3000")
