@@ -1,0 +1,9 @@
+insert , list(retrive),delete,update
+
+
+
+save()
+find()
+deleteOne()
+
+updateone()
