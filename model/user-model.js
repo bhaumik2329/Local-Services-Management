@@ -16,6 +16,10 @@ let UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "role",
   },
+  isActive: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const UserModel = mongoose.model("user", UserSchema);
