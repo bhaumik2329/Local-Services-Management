@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const sessionController = require("./controller/session-controller");
 const roleController = require("./controller/role-controller");
+const userController = require("./controller/user-controller");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get("/", function (req, res) {
   res.end();
 });
 
+//html
 app.get("/login", sessionController.login);
 app.get("/signup", sessionController.signup);
 app.post("/saveuser", sessionController.saveuser);
@@ -25,6 +27,12 @@ app.get("/roles", roleController.getAllRoles);
 app.delete("/roles/:roleId", roleController.deleteRole);
 
 app.put("/roles", roleController.updateRole);
+
+//user
+app.post("/users", userController.addUser);
+app.get("/users", userController.getAllUsers);
+app.put("/users", userController.updateUser);
+app.delete("/users/:userId", userController.deleteUser);
 
 //database
 mongoose.connect("mongodb://localhost:27017/localservices", function (err) {

@@ -1,4 +1,4 @@
-const RoleModel = require("../model/role-module");
+const RoleModel = require("../model/role-model");
 
 module.exports.addRole = function (req, res) {
   //db insert role
