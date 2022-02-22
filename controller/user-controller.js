@@ -54,7 +54,7 @@ module.exports.updateUser = function (req, res) {
 
   UserModel.updateMany(
     { _id: userId },
-    { firstName: firstName, email: email, password: password, role, role },
+    { firstName: firstName, email: email, password: password, role: role },
     function (err, data) {
       if (err) {
         //sendMailToDev(err)

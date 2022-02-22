@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const sessionController = require("./controller/session-controller");
 const roleController = require("./controller/role-controller");
 const userController = require("./controller/user-controller");
+const serviceController = require("./controller/service-controller");
+const catagoryController = require("./controller/catagory-controller");
+const vicecatagoryController = require("./controller/vicecatagory-controller");
 
 const app = express();
 
@@ -34,6 +37,24 @@ app.get("/users", userController.getAllUsers);
 app.put("/users", userController.updateUser);
 app.delete("/users/:userId", userController.deleteUser);
 app.post("/login", userController.login);
+
+//service
+app.post("/services", serviceController.addService);
+app.get("/services", serviceController.getAllServices);
+app.delete("/services/:serviceId", serviceController.deleteService);
+app.put("/services", serviceController.updateService);
+
+//catagory
+app.post("/catagories", catagoryController.addCatagory);
+app.get("/catagories", catagoryController.getAllCatagories);
+app.delete("/catagories/:catagoryId", catagoryController.deleteCatagory);
+app.put("/catagories", catagoryController.updateCatagory);
+
+//vicecatagory
+app.post("/vicecatagories", vicecatagoryController.addViceCatagory);
+app.get("/vicecatagories", vicecatagoryController.getAllViceCatagories);
+app.delete("/vicecatagories", vicecatagoryController.deleteViceCatagory);
+app.put("/vicecatagories", vicecatagoryController.updateViceCatagory);
 
 //database
 mongoose.connect("mongodb://localhost:27017/localservices", function (err) {
