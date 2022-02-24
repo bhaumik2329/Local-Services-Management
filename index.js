@@ -7,6 +7,10 @@ const userController = require("./controller/user-controller");
 const serviceController = require("./controller/service-controller");
 const catagoryController = require("./controller/catagory-controller");
 const vicecatagoryController = require("./controller/vicecatagory-controller");
+const userServiceController = require("./controller/user_service-controller");
+const serviceProviderController = require("./controller/serviceprovider-controller");
+const customerAddressController = require("./controller/customeraddress-controller");
+const feedbackController = require("./controller/feedback-controller");
 
 const app = express();
 
@@ -53,8 +57,44 @@ app.put("/catagories", catagoryController.updateCatagory);
 //vicecatagory
 app.post("/vicecatagories", vicecatagoryController.addViceCatagory);
 app.get("/vicecatagories", vicecatagoryController.getAllViceCatagories);
-app.delete("/vicecatagories", vicecatagoryController.deleteViceCatagory);
+app.delete(
+  "/vicecatagories/:vCatagoryId",
+  vicecatagoryController.deleteViceCatagory
+);
 app.put("/vicecatagories", vicecatagoryController.updateViceCatagory);
+
+//userservice
+app.post("/userservices", userServiceController.addUserService);
+app.get("/userservices", userServiceController.getAllUserServices);
+app.delete(
+  "/userservices/:userServiceId",
+  userServiceController.deleteUserService
+);
+app.put("/userservices", userServiceController.updateUserService);
+
+//serviceprovider
+app.post("/serviceproviders", serviceProviderController.addServiceProvider);
+app.get("/serviceproviders", serviceProviderController.getAllServiceProvider);
+app.delete(
+  "/serviceproviders/:serviceProviderId",
+  serviceProviderController.deleteServiceProvider
+);
+app.put("/serviceproviders", serviceProviderController.updateServiceProvider);
+
+//customeraddress
+app.post("/customeraddresses", customerAddressController.addCustomerAddress);
+app.get("/customeraddresses", customerAddressController.getAllCustomerAddress);
+app.delete(
+  "/customeraddresses/:customerAddressId",
+  customerAddressController.deleteCustomerAddress
+);
+app.put("/customeraddresses", customerAddressController.updateCustomerAddress);
+
+//feedback
+app.post("/feedbacks", feedbackController.addFeedback);
+app.get("/feedbacks", feedbackController.getAllFeedback);
+app.delete("/feedbacks/:feedbackId", feedbackController.deleteFeedback);
+app.put("/feedbacks", feedbackController.updateFeedback);
 
 //database
 mongoose.connect("mongodb://localhost:27017/localservices", function (err) {
