@@ -40,6 +40,20 @@ module.exports.getAllViceCatagories = function (req, res) {
     });
 };
 
+//get single vice catagory
+
+module.exports.getViceCatagory = function (req, res) {
+  let vicecatagoryId = req.params.vicecatagoryId;
+  VCatagoryModel.findById({ _id: vicecatagoryId }, function (err, catagory) {
+
+    if (err) {
+      res.json({ msg: "something went wrong", status: -1, data: err });
+    } else {
+      res.json({ msg: "role retrived...", status: 200, data: catagory });
+    }
+  });
+};
+
 //delete
 
 module.exports.deleteViceCatagory = function (req, res) {

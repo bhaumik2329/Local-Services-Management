@@ -16,6 +16,23 @@ let UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "role",
   },
+  address: {
+    type: String,
+  },
+  stateName: {
+    type: String,
+  },
+  cityName: {
+    type: String,
+  },
+  pinCode: {
+    type: Number,
+  },
+  contactNum: {
+    type: Number,
+  },
+
+
   isActive: {
     type: Number,
     default: 1,

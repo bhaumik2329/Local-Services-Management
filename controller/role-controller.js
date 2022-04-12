@@ -18,12 +18,28 @@ module.exports.addRole = function (req, res) {
   });
 };
 
+
+
+
 module.exports.getAllRoles = function (req, res) {
   RoleModel.find(function (err, roles) {
     if (err) {
       res.json({ msg: "something went wrong", status: -1, data: err });
     } else {
       res.json({ msg: "roles....", status: 200, data: roles });
+    }
+  });
+};
+
+//get single role
+module.exports.getRole = function (req, res) {
+  let roleId = req.params.roleId;
+  RoleModel.findById({ _id: roleId }, function (err, role) {
+
+    if (err) {
+      res.json({ msg: "something went wrong", status: -1, data: err });
+    } else {
+      res.json({ msg: "role retrived...", status: 200, data: role });
     }
   });
 };

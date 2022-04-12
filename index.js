@@ -1,5 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const app = express();
+const cors = require('cors')
+
 
 const sessionController = require("./controller/session-controller");
 const roleController = require("./controller/role-controller");
@@ -11,8 +14,10 @@ const userServiceController = require("./controller/user_service-controller");
 const serviceProviderController = require("./controller/serviceprovider-controller");
 const customerAddressController = require("./controller/customeraddress-controller");
 const feedbackController = require("./controller/feedback-controller");
+const emailController = require('./controller/email-controller')
 
-const app = express();
+app.use(cors())
+
 
 //middle ware
 app.use(express.json());
@@ -27,10 +32,18 @@ app.get("/", function (req, res) {
 app.get("/login", sessionController.login);
 app.get("/signup", sessionController.signup);
 app.post("/saveuser", sessionController.saveuser);
+app.post("/sendotp", sessionController.sendOtpForPassword)
+app.post("/getuserbyemail", sessionController.getUserByEmail)
+
+
+// email
+app.post("/email", emailController.sendEmail)
+
 
 //role
 app.post("/roles", roleController.addRole);
 app.get("/roles", roleController.getAllRoles);
+app.get("/roles/:roleId", roleController.getRole);
 app.delete("/roles/:roleId", roleController.deleteRole);
 
 app.put("/roles", roleController.updateRole);
@@ -38,25 +51,31 @@ app.put("/roles", roleController.updateRole);
 //user
 app.post("/users", userController.addUser);
 app.get("/users", userController.getAllUsers);
+app.get("/users/:userId", userController.getUser);
+// app.get("/users", userController.getUserByEmail);
 app.put("/users", userController.updateUser);
+app.put("/users/updatepass", userController.updatePassword);
 app.delete("/users/:userId", userController.deleteUser);
 app.post("/login", userController.login);
 
 //service
 app.post("/services", serviceController.addService);
 app.get("/services", serviceController.getAllServices);
+app.get("/services/:serviceId", serviceController.getService);
 app.delete("/services/:serviceId", serviceController.deleteService);
 app.put("/services", serviceController.updateService);
 
 //catagory
 app.post("/catagories", catagoryController.addCatagory);
 app.get("/catagories", catagoryController.getAllCatagories);
+app.get("/catagories/:catagoryId", catagoryController.getCatagory);
 app.delete("/catagories/:catagoryId", catagoryController.deleteCatagory);
 app.put("/catagories", catagoryController.updateCatagory);
 
 //vicecatagory
 app.post("/vicecatagories", vicecatagoryController.addViceCatagory);
 app.get("/vicecatagories", vicecatagoryController.getAllViceCatagories);
+app.get("/vicecatagories/:vicecatagoryId", vicecatagoryController.getViceCatagory);
 app.delete(
   "/vicecatagories/:vCatagoryId",
   vicecatagoryController.deleteViceCatagory
@@ -106,8 +125,8 @@ mongoose.connect("mongodb://localhost:27017/localservices", function (err) {
   }
 });
 
-app.listen(3000, function () {
-  console.log("server started on 3000");
+app.listen(4000, function () {
+  console.log("server started on 4000");
 });
 
 // const calc = require("./calc") //import

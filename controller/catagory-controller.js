@@ -37,6 +37,21 @@ module.exports.getAllCatagories = function (req, res) {
     });
 };
 
+//get single catagory
+
+module.exports.getCatagory = function (req, res) {
+  let catagoryId = req.params.catagoryId;
+  CatagoryModel.findById({ _id: catagoryId }, function (err, catagory) {
+
+    if (err) {
+      res.json({ msg: "something went wrong", status: -1, data: err });
+    } else {
+      res.json({ msg: "role retrived...", status: 200, data: catagory });
+    }
+  });
+};
+
+
 //delete
 module.exports.deleteCatagory = function (req, res) {
   let catagoryId = req.params.catagoryId;

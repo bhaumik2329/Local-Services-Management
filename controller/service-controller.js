@@ -30,6 +30,21 @@ module.exports.getAllServices = function (res, res) {
   });
 };
 
+//get single service
+
+module.exports.getService = function (req, res) {
+  let serviceId = req.params.serviceId;
+  ServiceModel.findById({ _id: serviceId }, function (err, user) {
+
+    if (err) {
+      res.json({ msg: "something went wrong", status: -1, data: err });
+    } else {
+      res.json({ msg: "user retrived...", status: 200, data: user });
+    }
+  });
+};
+
+
 //delete
 
 module.exports.deleteService = function (req, res) {
